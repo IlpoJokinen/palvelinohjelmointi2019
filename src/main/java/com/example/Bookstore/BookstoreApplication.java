@@ -27,11 +27,8 @@ public class BookstoreApplication {
 		crepo.save(new Category("Military"));
 		crepo.save(new Category("Novel"));
 		
-		Category Military = crepo.findByName("Military").get(0);
-		Category Novel = crepo.findByName("Novel").get(0);
-		
-		repository.save(new Book("A Farewell to Arms", "Ernest Hemingway", "1232323-21", 1929, 20.00, Military));
-		repository.save(new Book("Animal Farm", "George Orwell", "2212343-5", 1945, 20.00, Novel));
+		repository.save(new Book("A Farewell to Arms", "Ernest Hemingway", "1232323-21", 1929, 20.00, crepo.findByName("Military").get(0)));
+		repository.save(new Book("Animal Farm", "George Orwell", "2212343-5", 1945, 20.00, crepo.findByName("Novel").get(0)));
 		
 		log.info("fetch all books");
 		for (Book book : repository.findAll()) {
